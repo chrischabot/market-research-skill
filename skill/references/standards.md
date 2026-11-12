@@ -64,6 +64,32 @@ Inputs: <the files and main sources you read>.
 
 Use full sentences and ordinary prose. Tables are for comparisons and lists are for things that are really enumerable. Leave out hype words and anything you would not say to a sceptical colleague. The page lengths in the templates are guides for an ordinary case; a large or central subject deserves more, and padding a small one helps nobody. If a section of your template has nothing true to put in it, write one line saying so and why.
 
+## When to stop and report
+
+Stop, and say so in your report, instead of working around any of these:
+
+- You could not read this file, your role file, or an input your brief told you to read.
+- Your assignment is not what the brief says it is: the study area's paths do not exist, the competitor's site is a different product, the scope line does not match what you find.
+- You are a research role and web access does not work: searches fail, or pages will not open across several kinds of source. One blocked site is a gap to record; no working access is a stop.
+- Doing the job properly would require something these standards forbid, such as creating an account or changing the repository.
+- You find that a premise in `intake.md` or `product.md` is plainly false in a way that changes your whole assignment.
+
+Write what you have established so far if it is useful, mark the document partial in its first line, and report. The lead can re-plan around a stop; it cannot detect a document that was improvised.
+
+## Before you report
+
+Read your document once more against the sources you actually opened. For every link and quotation, ask whether you opened that page during this assignment and saw those words. Remove or mark anything you cannot answer yes to. For every statement about our product in the present tense, ask whether you saw it exist.
+
 ## Your report back
 
-When the file is written, reply to the lead in a few lines: the files you wrote, the three findings that matter most, what you could not find or could not reach, and anything that contradicts `intake.md` or `product.md`. The lead reads the file, so do not repeat it.
+Reply to the lead in exactly this form. The lead reads your file, so do not repeat it.
+
+```
+STATUS: COMPLETE | PARTIAL | STOPPED
+READ: standards yes/no; role file yes/no
+FILES: <paths written>
+FINDINGS: <up to three, one line each>
+GAPS: <what was not found, and sources that could not be reached>
+CONFLICTS: <anything that contradicts intake.md or product.md, or "none">
+STOPPED BECAUSE: <only when STOPPED: which condition above, and what you observed>
+```

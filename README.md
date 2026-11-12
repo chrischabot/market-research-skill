@@ -20,7 +20,17 @@ The run has seven stages. Each writes files into one workspace, and each later s
 | 6. Competitors | For every shortlisted competitor: a profiler writes a brief and a record of its positioning and language; then a growth researcher and a feedback researcher cover how it grew and what its users say. | Three agents per competitor, in two waves | `competitors/<company>-brief.md`, `-positioning.md`, `-growth.md`, `-feedback.md` |
 | 7. Strategy | One writer makes the cross-competitor comparisons in a landscape document; a second fixes the positioning and priorities in the product brief; four writers then produce the go-to-market plan, the pitches, the website content strategy and the product opportunities; one turns them into an execution plan; and a reviewer who wrote none of them checks the set. | Eight agents, in five steps | `landscape.md`, `strategy/*.md` |
 
-The stages are described in full in [skill/SKILL.md](skill/SKILL.md), which is short enough to read before you install it. Each role has its own brief under [skill/references/roles](skill/references/roles), and the final documents are specified in [skill/references/strategy-documents.md](skill/references/strategy-documents.md).
+The stages are described in full in [skill/SKILL.md](skill/SKILL.md), which is short enough to read before you install it. Each role has its own brief under [skill/references/roles](skill/references/roles), the final documents are specified in [skill/references/strategy-documents.md](skill/references/strategy-documents.md), and the mechanics of running the agents are in [skill/references/orchestration.md](skill/references/orchestration.md).
+
+### How the agents are kept honest
+
+A run of this size fails in predictable ways: agents describe a thorough search more readily than they perform one, coverage is quietly thinned when the work gets long, and the lead loses track of what was done. Three mechanisms address this.
+
+**A ledger.** Every assignment is a unit in `run.json` with its outputs and a status: planned, in progress, done, thin, blocked, deferred, stale or dropped. A small script, `skill/scripts/ledger.py`, checks the ledger against the files after every update: that each finished unit has its documents, that evidence documents carry links, that links between strategy documents resolve, that anything thin, blocked or deferred says why, and that a run marked complete has nothing open. A run ends as complete or as incomplete with a stated reason, and in no other way. The script confirms that the record and the files agree; it cannot tell you whether the research is good.
+
+**Independent checks.** Nobody checks their own work. After the competitor research, a source checker per competitor opens the cited pages and looks for every quotation and a sample of the facts, and a document with several quotations that are not on their pages is thrown away and rewritten by a different agent. A coverage critic, which planned nothing, looks for parts of the repository nobody studied and for a competitor a buyer would name that the shortlist missed; what it finds becomes a follow-up wave. A reviewer who wrote none of the strategy reads all of it for inconsistency, overclaiming and unsupported statements.
+
+**Self-contained briefs.** An agent inherits nothing from the lead, so every brief names the files to read, the one thing to write, what the neighbouring agents own, and five rules repeated word for word. Each agent must say in its report that it read the standards, and reports in a fixed form that includes what it could not find. Each also has stop conditions: when the assignment is not what the brief says, or web access does not work, it stops and reports instead of improvising.
 
 ### Two registers
 
@@ -30,7 +40,7 @@ Documents about your own product are aspirational. Their job is to capture what 
 
 Documents about competitors and the market are evidence-led. Every claim carries a link to a page the agent opened during the run, and nothing may be cited from the model's memory. Quotations are verbatim, because the words competitors and their users choose are themselves the data, and "not found" is an accepted answer where a figure is unpublished or a site could not be reached.
 
-Invented quotations are the likeliest serious failure in work of this kind, so the lead opens the pages behind a sample of quotations in every feedback document and has the document redone if one is not there. Before any web research starts it also confirms that the host's web access works, and stops with the product documents if it does not.
+Invented quotations are the likeliest serious failure in work of this kind, which is why the source checkers exist. Before any web research starts the lead also confirms that the host's web access works, and stops with the product documents if it does not.
 
 The full standard is in [skill/references/standards.md](skill/references/standards.md).
 
@@ -38,7 +48,8 @@ The full standard is in [skill/references/standards.md](skill/references/standar
 
 ```
 market-research/<product>/
-  README.md                         run log: stage status, decisions, gaps, index
+  run.json                          the ledger: every unit, its outputs and its status
+  README.md                         run log: decisions, gaps, questions for you, index
   intake.md                         your summary, value propositions, audiences
   repo-map.md                       components and study areas
   components/<area>.md              one document per study area
@@ -49,6 +60,7 @@ market-research/<product>/
   competitors/<company>-positioning.md
   competitors/<company>-growth.md
   competitors/<company>-feedback.md
+  competitors/checks/<company>.md   the source checker's verdict on each citation
   landscape.md                      cross-competitor synthesis
   strategy/product-brief.md         description, positioning, pitch, market, audiences
   strategy/go-to-market.md          growth strategy and every channel
@@ -65,17 +77,21 @@ The run log records every judgment call the lead made on your behalf, such as wh
 
 ## Scale
 
-This is a large job. A standard run on a repository with ten study areas and seven shortlisted competitors starts about forty agents, most of them doing web research, and takes a correspondingly long time and a large number of tokens. The skill has three depths, and you can name one when you start:
+This is a large job. A standard run on a repository with ten study areas and seven shortlisted competitors starts about fifty agents, most of them doing web research, and takes a correspondingly long time and a large number of tokens. The skill has three depths, and you can name one when you start:
 
-| Depth | Study areas | Competitors | Agents, roughly |
-|-------|-------------|-------------|-----------------|
-| Quick | up to 5 | 3 to 4, one researcher each | 20 |
-| Standard (default) | 6 to 14 | 6 to 8, three researchers each | 35 to 50 |
-| Deep | as many as the repository needs | up to 12, three researchers each | 60 or more |
+| Depth | Study areas | Competitors | Independent checks | Agents, roughly |
+|-------|-------------|-------------|--------------------|-----------------|
+| Quick | up to 5 | 3 to 4, one researcher each | the lead samples sources | 20 |
+| Standard (default) | 6 to 14 | 6 to 8, three researchers each | a source checker per competitor, each critic once | 45 to 60 |
+| Deep | as many as the repository needs | up to 12, three researchers each | checkers including the market, critics until clean | 80 or more |
+
+Depth changes how much is covered and how much is double-checked. It never relaxes the rules about sources.
+
+You can also set a budget as a maximum number of agents. The lead then reserves the synthesis and the checks first, spends what is left on study areas and competitors in priority order, and records whatever the budget excludes as deferred, so that a cheaper run is visibly a partial one and never a thinner one presented as complete. If the budget cannot fund a usable run, it says so before starting anything.
 
 Before the first team is launched, the lead says in a few lines what it understood the product and audiences to be, the depth, and how many agents it is about to start, so that a wrong premise can be caught while it is cheap.
 
-A request for part of the work runs only the stages it needs. Competitor analysis alone stops after the landscape document; a pitch or positioning request on an existing workspace rewrites only the relevant strategy documents.
+The full run starts only when you ask for the research or its documents. A question ("who are the obvious competitors here?"), a review of one pitch, or advice on positioning is answered in the conversation, using the skill's method and any workspace that already exists, without starting teams or writing files. A request for part of the work runs only the stages it needs: competitor analysis alone stops after the landscape document, and a pitch or positioning request on an existing workspace rewrites only the relevant strategy documents.
 
 ## Install
 
@@ -151,9 +167,12 @@ Later runs work on the same workspace:
 /market-research the audience has changed: we are now selling to chains, not single shops
 /market-research refresh the competitor research
 /market-research quick run, four competitors at most
+/market-research standard depth, no more than 30 agents
 ```
 
 Changing an early stage marks every later stage that read its output as stale and redoes them, because a strategy built on a superseded product document is wrong in ways that are hard to notice. Adding a competitor researches that one alone and then rewrites the synthesis and strategy; dropping one sets its documents aside and does the same.
+
+A later run costs less than the first. Each study area records the commit it was written against, so a refresh re-studies only the areas whose source has changed. Competitors that were considered and cut stay cut unless the evidence has changed, and decisions you made in an earlier run are kept.
 
 A product without a repository works too: point the skill at a website, documentation or a deck, and those become the study areas. The skill is not limited to software sold to businesses. The intake records what kind of product it is (a developer tool, a business application, a consumer app, an open-source project, a physical product, a service), and each researcher adapts its sources and channels to that.
 
@@ -171,14 +190,25 @@ Researchers only read public pages. They do not create accounts, start trials, s
 skill/
   SKILL.md                          the lead's procedure
   agents/openai.yaml                Codex display name and default prompt
+  scripts/ledger.py                 checks run.json against the workspace; prints the stage table
   references/
-    standards.md                    the two registers; read by every agent
+    orchestration.md                ledger, budget, briefs, reports, checks, carry-over
+    standards.md                    the two registers, stop conditions, report format; read by every agent
     example-intake.md               a worked example of stage 1
     strategy-documents.md           every stage 7 document
     roles/                          one brief per agent role
+tests/test_ledger.py                tests for the ledger script
 ```
 
-There is nothing to build and there are no dependencies. An edit reaches every host linked to your clone.
+There is nothing to build. The ledger script needs Python 3.8 or later and only the standard library; without Python the lead keeps the ledger by hand under the same rules. An edit reaches every host linked to your clone.
+
+```sh
+python3 -m unittest discover tests
+```
+
+## Acknowledgements
+
+The orchestration borrows from two skills that do multi-stage, multi-agent work well. From [shadcn/improve](https://github.com/shadcn/improve): briefs written for a reader with no context, critical rules repeated in every brief because agents do not inherit them, stop conditions in place of improvisation, the lead re-checking what agents report, and stamping work with the commit it was written against so a later run can detect drift. From [cloudflare/security-audit-skill](https://github.com/cloudflare/security-audit-skill): the separation of a guidance mode from the full workflow, a ledger of coverage units that is validated by a script, coverage critics, the rule that the agent that checks a claim is never the one that made it, budgets that reserve verification before exploration, and explicit terminal states.
 
 ## License
 
