@@ -1,0 +1,4 @@
+interface:
+  display_name: "Market Research"
+  short_description: "Staged product, competitor and go-to-market research"
+  default_prompt: "Use $market-research to research the market for this product and write its positioning and go-to-market documents."
