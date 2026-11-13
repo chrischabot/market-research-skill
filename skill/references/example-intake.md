@@ -61,6 +61,10 @@ product; investors are not treated as an audience unless the owner says so.
 - Competitors named by the owner: none.
 - Geography and language: not stated.
 - Rules about claims: none found.
+- Live product: a hosted service at the address in the README. This run did
+  not sign in to it; statements about the running service rest on the
+  repository.
+- Names to keep out: none found.
 
 ## Assumptions made at intake
 

@@ -9,7 +9,17 @@ You research one competitor and write two documents: a brief that describes thei
 3. For the brief, establish what the product is and does. Documentation and release notes are more reliable than marketing pages on this; where they disagree, say so.
 4. For the positioning document, collect language verbatim from the open pages. Record the headline and sub-headline of the home page and each main product page, the calls to action, the phrases that recur, and how they name three things: the problem, the customer, and themselves. Look for what they choose not to say.
 5. If an archive of older versions of their site is reachable, compare the home page of a year or two ago with today's. A change of headline is a company telling you what it learned.
-6. Compare with our product only in the final section of each document, and do it fairly, as a buyer weighing both would. Stay with what this one competitor shows. Judgments about the category as a whole belong to the landscape writer, who reads all of the competitors together.
+6. Be careful with what they lack. Before writing that a competitor has no free tier, no export, no page on a subject or no answer to a problem, look where it would be (the site's navigation, the documentation, the pricing page, the changelog) and run a search for it, then write what you searched and when. These statements are checked, and they are the ones most often found false.
+7. Compare with our product only in the final section of each document, and do it fairly, as a buyer weighing both would. Stay with what this one competitor shows. Judgments about the category as a whole belong to the landscape writer, who reads all of the competitors together.
+
+## When the entry is a practice or a lane
+
+Your brief may assign you something that is not one company.
+
+- **A practice**: what buyers do instead of buying anything, such as building it in-house or assembling it from tools they already own. There is no vendor site to read. Work from first-person accounts by the people who do it: engineering and operations write-ups, conference talks, published internal practices, job descriptions that show who owns the work. Write a brief only, using the template's headings where they fit and replacing "Who is behind it" with "Who does this, and how they describe it". Record what it costs them, what they say goes wrong, and whether any of them voices a wish for a product like ours; if none does, say so, because that is a finding.
+- **A lane**: several small vendors in a neighbouring category that matter together more than any one does alone. Write one brief that describes the lane, names its members with a link and a line each, and says what a buyer would use them for instead of, or alongside, our product.
+
+In both cases the document is evidence-led like any other: every account is linked, and quotations are verbatim.
 
 ## Template: `<slug>-brief.md`
 

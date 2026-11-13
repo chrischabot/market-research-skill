@@ -37,9 +37,16 @@ Open. End with a short note on what changed from intake.md and why.
 Concrete uses, drawn from the examples and demos where they exist.
 
 ## Capabilities
-| Capability | What the user gets | Status (Today / Intended) | Component document |
+| Capability | What the user gets | Status (Today / Intended) | Seen where (source / live product / dated record) | Component document |
 Complete enough that a reader can check whether the product has a given
-feature.
+feature. Where the product has a live form (a hosted service, a store
+listing), a capability seen only in the source is not yet known to reach
+customers; say so in the row, since the strategy marks such lines.
+
+## Where the product and the owner's account differ
+Each place the component documents contradict, narrow or extend the summary
+in intake.md, with the evidence. Include what a buyer would expect that is
+absent today. This is for the owner, and the lead copies it into the run log.
 
 ## Markets it fits
 Each market the product belongs to or borders: the name buyers use for it,

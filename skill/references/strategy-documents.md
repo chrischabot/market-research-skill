@@ -20,7 +20,7 @@ Stage 7 turns the research into documents the owner can act on. This file define
 
 | Document | Reads closely | Consults for detail |
 |----------|---------------|---------------------|
-| `landscape.md` | `market.md`, `competitors.md`, every file in `competitors/` (not `competitors/dropped/`) | `components/*.md`, to check what our product has |
+| `landscape.md` | `market.md`, `competitors.md`, every file in `competitors/` (not `competitors/dropped/`) | `components/*.md`, to check what our product has; `competitors/checks/`, to know what was corrected and what could not be checked |
 | `product-brief.md` | `market.md`, `landscape.md` | the `-positioning.md` files |
 | `go-to-market.md` | `landscape.md`, `product-brief.md`, `market.md` | the `-growth.md` files |
 | `pitches.md` | `landscape.md`, `product-brief.md` | the `-positioning.md` and `-feedback.md` files |
@@ -31,11 +31,19 @@ Stage 7 turns the research into documents the owner can act on. This file define
 
 **The product brief is fixed.** Once `product-brief.md` exists, every other document uses its name for the product, its positioning statement, its value propositions, and its table of markets and audiences with their priorities, word for word where they are quoted. If you think the brief is wrong, say so in your report to the lead; do not quietly diverge, because six documents that each position the product slightly differently are worse than one imperfect position.
 
+**Fixed wordings are quoted, not rephrased.** The brief has a section of fixed wordings: the one line, the noun for the category, and the exact sentence for each claim that is easy to overstate, with the qualification it must carry. Use those sentences as written wherever the claim appears. A result, a benchmark or a customer story is always given with its scope (who ran it, on what, how many times); a version without the scope is a different and larger claim.
+
+**Decisions for the owner are listed once.** Each of the first five strategy documents ends with a section, "Decisions this needs from the owner", giving each decision, your recommendation and what waits on it. The execution plan gathers them into one numbered table (D1, D2, …). Once it exists, that table is the only list: every other document, the run log and the lead's report cite its numbers and do not restate the decisions.
+
 **Trace recommendations to evidence.** A recommendation should name what it rests on: a competitor's result in a `-growth.md`, a complaint in a `-feedback.md`, a figure in `market.md`, a capability in `product.md`. Link to the file. A recommendation that rests on your judgment alone is allowed and should say so.
 
 **You may check a fact on the web.** The research documents are your sources, and you are not asked to redo them. Where a recommendation needs a specific fact they lack (whether a publication accepts contributed articles, what an advertising channel requires), look it up under the same standards and cite it.
 
-**Persuade with true things.** Pitches and website copy are meant to persuade, and they may speak about where the product is going. Copy for publication may draw on Today and Intended only, and any line that depends on something Intended must be marked, so the owner knows which lines can be used now and which wait on the product. Possible belongs in `product-opportunities.md` and in sections about the future, labelled as such. Carry the product's own rules about claims into every document.
+**Persuade with true things.** Pitches and website copy are meant to persuade, and they may speak about where the product is going. Copy for publication may draw on Today and Intended only, and any line that depends on something not yet true carries a marker, so the owner knows which lines can be used now and which wait. Use two: **[Intended]** for a line that waits on the product or on a decision, and **[Live: Open]** for a line about a capability that exists in the source but that nothing in this run confirmed in the product customers use. Possible belongs in `product-opportunities.md` and in sections about the future, labelled as such. Carry the product's own rules about claims into every document.
+
+**A competitor's misfortune is not our proof.** An outage, a breach or a billing scandal elsewhere shows that buyers have a reason to care about a problem. It shows nothing about our product unless the same mechanism is at work and our design demonstrably prevents it; say which is the case each time an incident is used.
+
+**Say when the honest answer is unfavourable.** The owner is better served by "we are behind here" and "this complaint about them is true of us too" than by a comparison that flatters. A strategy that hides a weakness cannot plan around it.
 
 **Fit the plan to the product.** Take the product type, stage, team size and budget from `intake.md`. Where they are not stated, assume a small team with little money and say that you did. A plan that needs twelve people is no use to three, and a channel that suits a developer tool is wrong for a consumer app.
 
@@ -75,20 +83,30 @@ strongest point; weakest point; growth motion.
 ## Competitor pain points we solve or could do better
 | Pain point | Who suffers it, and where (links) | Our answer (Today / Intended / Possible / none) | How strong the claim is |
 
+## Complaints about competitors that are true of us too
+The pain points in the feedback documents that a user of our product would
+have just the same. Each is a line no pitch may use against a rival, and a
+candidate for the product opportunities.
+
 ## Where we are behind
 What buyers get elsewhere that we cannot offer, and whether it matters to our
-audiences.
+audiences. Include the kinds of proof they have and we lack (customers,
+independent review, certification, a track record).
 
 ## Substitutes and the status quo
-From competitors.md: why people build it themselves, make do or do nothing,
-and what would move them.
+From competitors.md and the status-quo brief: why people build it themselves,
+make do or do nothing, and what would move them.
 
 ## Growth lessons
 The moves that worked for several competitors, the ones that worked once, and
 the routes now closed.
 
 ## White space
-The positions, segments and channels nobody has taken.
+The positions, segments and channels nobody has taken. For each, say whether
+buyers ask for it. A position is sometimes vacant because nobody wants it,
+and the feedback documents show the difference: ground that is open and
+asked for is an opportunity, while ground that is open and unasked for has
+to be sold before it can be claimed.
 ```
 
 ## `strategy/product-brief.md`
@@ -145,7 +163,22 @@ by the project's own rules.
 ## Messaging pillars and vocabulary
 The few themes all communication returns to, the words we use, and the words
 we avoid.
+
+## Fixed wordings
+The sentences the other documents must quote exactly: the one line; the noun
+for the category; and, for each claim that is easy to overstate, the one
+sentence that states it with its qualification. Give every result, benchmark
+or customer story with its scope.
+
+## Where this brief departs from the owner's account
+Only if it does. The owner's statement, quoted and kept on the record; what
+the brief recommends instead; the evidence; and what it would cost to decide
+the other way, document by document.
+
+## Decisions this needs from the owner
 ```
+
+If the research supports a different first audience, a different lead proposition or a narrower claim than the owner's summary gives, recommend it, plainly and to the owner, in the section for that purpose. Do not adopt it silently and do not suppress it to agree with the intake. Build the brief on your recommendation, and write the priorities so that a reversal would change an identifiable part of the set.
 
 ## `strategy/go-to-market.md`
 
@@ -180,7 +213,8 @@ and money; and how to tell whether it is working. Say plainly which channels
 to skip for now and why.
 
 ## Launch plan
-What to launch, where, in what order, with what assets.
+What to launch, where, in what order, with what assets. Tie each phase to the
+owner decisions it waits on, and say what can be done with none of them made.
 
 ## Measures
 The few numbers that show whether the plan is working, and the level that
@@ -217,6 +251,8 @@ The table from the product brief.
 - Words to use, and words to avoid, with this audience
 ```
 
+Where an AI assistant or a coding agent chooses or recommends products of this kind on the buyer's behalf, add a version of the leading pitch written for it to read: plain facts, limits stated, nothing that needs a human's goodwill to believe.
+
 ## `strategy/website-content-strategy.md`
 
 ```markdown
@@ -227,6 +263,14 @@ The table from the product brief.
 ## What the site must do
 For each audience: what they arrive wanting, what they must leave believing,
 and the action we want.
+
+## The site today
+Only if a site exists. Page by page: keep, change or remove, with the reason.
+Then what a visitor who is not signed in receives, and what an automated
+reader receives; open the pages yourself to find out. A site behind a sign-in
+or a waiting list tells search engines and assistants nothing, and the plan
+must say so. Where part of the product is not yet public, plan for both
+states: what the site says now, and what changes on the day it opens.
 
 ## Site map
 The pages, and the path each audience takes through them.
@@ -260,7 +304,7 @@ Patterns worth adopting and habits to avoid, with links.
 
 ## `strategy/product-opportunities.md`
 
-Things the product could add, change or package differently to reach a larger market. This is advice to the owner about the product itself, grounded in what the research found people want. It is the home of the Possible: draw on the "what it could become" sections of the component documents as well as on competitor feedback.
+Things the product could add, change or package differently to reach a larger market. This is advice to the owner about the product itself, grounded in what the research found people want. It is the home of the Possible: draw on the "what it could become" sections of the component documents as well as on competitor feedback. It is also the most candid document in the set, so open it by saying that it is internal.
 
 ```markdown
 # <Product>: product opportunities
@@ -284,6 +328,14 @@ For each, in order of value:
 ## Expected features we are missing
 Things buyers in this market assume, whose absence loses them.
 
+## Decisions more than builds
+Opportunities that need a choice and no engineering: publishing something,
+stating a policy, setting a price, opening access.
+
+## Constraints to hold and constraints to relax
+The limits the product imposes on its users, which of them the position
+depends on, and which cost more customers than they are worth.
+
 ## Packaging and pricing opportunities
 ## Partnerships and integrations
 ## Opportunities considered and rejected
@@ -300,8 +352,17 @@ Written after the other five. It adds no new strategy; it puts their recommendat
 <header as in the standards>
 
 ## Before anything else
-Decisions only the owner can make, each with a recommendation, and the
-prerequisites nothing can start without.
+The decisions only the owner can make, gathered from the other five documents
+into one numbered table:
+| # | Decision | Recommendation | What waits on it | Raised in |
+Mark any the owner has already made, with the date. Then the work that can
+start with none of them made, and the prerequisites nothing can start
+without.
+
+## Effort against capacity
+The total effort of the steps below, set against the team and time in
+intake.md. If the plan needs more than the team has, say what moves out or
+what date follows; do not leave the owner to do the sum.
 
 ## Phases
 Phase 0: foundations (positioning agreed, site, basic assets, measurement).
@@ -315,6 +376,12 @@ For each step:
 The assets to produce (copy, pages, demos, decks, examples), each pointing to
 the section of the document that specifies it.
 
+## Checks before anything is published
+For any line taken from this set into public copy: open the live page behind
+each quotation and figure again, since the research ages in months; confirm
+each marked line is now true; confirm nothing the product's rules exclude has
+crept in.
+
 ## Checkpoints
 At the end of each phase: what to measure, what result means continue, and
 what result means change course.
@@ -323,7 +390,7 @@ what result means change course.
 Recommendations from the other documents that this plan defers, and why.
 ```
 
-Every step must come from one of the other documents; if a necessary step has no source, add it and say that it is new. Write "done when" as something observable. Size the plan to the team in `intake.md`.
+Every step must come from one of the other documents; if a necessary step has no source, add it and say that it is new. Write "done when" as something observable. Size the plan to the team in `intake.md`, and label every effort figure as your estimate. Where the other documents disagree about a decision, a limit or a dependency, do not pick one silently: report the disagreement to the lead and state in the plan which version it follows.
 
 ## `strategy/review.md`
 
@@ -335,18 +402,23 @@ Written last by a reviewer who wrote none of the others. Read the six strategy d
 <header as in the standards>
 
 ## Verdict
-Whether the set is fit to act on, in two or three sentences.
+Whether the set is fit to act on, in two or three sentences. If the brief
+departs from the owner's account, say what it would cost to decide the other
+way: which documents stand, which need reordering and which need rewriting.
 
 ## Findings
 | # | Document and section | Kind | What is wrong | Suggested fix |
 Kinds:
-- inconsistent: a name, value proposition, priority or audience that differs
-  from the product brief
-- overclaimed: something Intended or Possible written as present fact, or a
-  claim the product's own rules exclude
+- inconsistent: a name, value proposition, priority, audience, figure or
+  fixed wording that differs from the product brief, or two documents that
+  give a different limit, date or dependency for the same thing
+- overclaimed: something Intended or Possible written as present fact, a
+  result given without its scope, a claim broader than the landscape
+  supports, or a claim the product's own rules exclude
 - unsupported: a factual statement about a competitor or the market with no
   trace to a research document
-- unusable: a recommendation too vague to act on, or beyond the team's means
+- unusable: a recommendation too vague to act on, or beyond the team's means,
+  including a plan whose total effort exceeds the capacity in intake.md
 - missing: something the document's template requires that is absent
 - broken link
 

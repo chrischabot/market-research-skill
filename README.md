@@ -28,9 +28,9 @@ A run of this size fails in predictable ways: agents describe a thorough search 
 
 **A ledger.** Every assignment is a unit in `run.json` with its outputs and a status: planned, in progress, done, thin, blocked, deferred, stale or dropped. A small script, `skill/scripts/ledger.py`, checks the ledger against the files after every update: that each finished unit has its documents, that evidence documents carry links, that links between strategy documents resolve, that anything thin, blocked or deferred says why, and that a run marked complete has nothing open. A run ends as complete or as incomplete with a stated reason, and in no other way. The script confirms that the record and the files agree; it cannot tell you whether the research is good.
 
-**Independent checks.** Nobody checks their own work. After the competitor research, a source checker per competitor opens the cited pages and looks for every quotation and a sample of the facts, and a document with several quotations that are not on their pages is thrown away and rewritten by a different agent. A coverage critic, which planned nothing, looks for parts of the repository nobody studied and for a competitor a buyer would name that the shortlist missed; what it finds becomes a follow-up wave. A reviewer who wrote none of the strategy reads all of it for inconsistency, overclaiming and unsupported statements.
+**Independent checks.** Nobody checks their own work. After the competitor research, a source checker per competitor opens the cited pages and looks for every quotation, every statement that a competitor lacks something, every account of an incident and a sample of the other facts. Claims it marks go back for correction and the corrections are confirmed; a document with several quotations that are not on their pages is thrown away and rewritten by a different agent. A coverage critic, which planned nothing, looks for parts of the repository nobody studied and for a competitor a buyer would name that the shortlist missed; what it finds becomes a follow-up wave. A reviewer who wrote none of the strategy reads all of it for inconsistency, overclaiming and unsupported statements.
 
-**Self-contained briefs.** An agent inherits nothing from the lead, so every brief names the files to read, the one thing to write, what the neighbouring agents own, and five rules repeated word for word. Each agent must say in its report that it read the standards, and reports in a fixed form that includes what it could not find. Each also has stop conditions: when the assignment is not what the brief says, or web access does not work, it stops and reports instead of improvising.
+**Self-contained briefs.** An agent inherits nothing from the lead, so every brief names the files to read, the one thing to write, what the neighbouring agents own, and six rules repeated word for word. Each agent must say in its report that it read the standards, and reports in a fixed form that includes what it could not find. Each also has stop conditions: when the assignment is not what the brief says, or web access does not work, it stops and reports instead of improvising.
 
 ### Two registers
 
@@ -49,7 +49,8 @@ The full standard is in [skill/references/standards.md](skill/references/standar
 ```
 market-research/<product>/
   run.json                          the ledger: every unit, its outputs and its status
-  README.md                         run log: decisions, gaps, questions for you, index
+  README.md                         the page you navigate from: five-minute summary, a table from tasks to documents
+  RUN-LOG.md                        run log: decisions, findings, questions for you, gaps
   intake.md                         your summary, value propositions, audiences
   repo-map.md                       components and study areas
   components/<area>.md              one document per study area
@@ -60,6 +61,7 @@ market-research/<product>/
   competitors/<company>-positioning.md
   competitors/<company>-growth.md
   competitors/<company>-feedback.md
+  competitors/<practice>-brief.md   what buyers do instead of buying anything, researched from first-person accounts
   competitors/checks/<company>.md   the source checker's verdict on each citation
   landscape.md                      cross-competitor synthesis
   strategy/product-brief.md         description, positioning, pitch, market, audiences
@@ -67,29 +69,33 @@ market-research/<product>/
   strategy/pitches.md               one pitch per market and audience combination
   strategy/website-content-strategy.md
   strategy/product-opportunities.md
-  strategy/execution-plan.md        ordered steps with owners and done-when
+  strategy/execution-plan.md        one numbered table of your decisions, then ordered steps with done-when
   strategy/review.md                the independent reviewer's findings
 ```
 
-The landscape is where the comparisons are made: a table of the features users love in competitors that your product also has, a table of the competitor pain points your product solves or could do better (including the rows where the honest answer is that it does not), the language the whole category uses, and the ground nobody has claimed.
+The landscape is where the comparisons are made: a table of the features users love in competitors that your product also has, a table of the competitor pain points your product solves or could do better (including the rows where the honest answer is that it does not), the complaints about competitors that are true of your product too, the language the whole category uses, and the ground nobody has claimed, with a note on whether buyers are asking for it.
 
-The run log records every judgment call the lead made on your behalf, such as which competitors were cut and why, along with the places where the repository and your own summary of the product disagree. That last list is often the most useful thing a run produces.
+The run log records every judgment call the lead made on your behalf, such as which competitors were cut and why, along with the places where the repository and your own summary of the product disagree. That last list is often the most useful thing a run produces. Where the research supports something other than what you said, such as a different audience to sell to first, the product brief recommends it to you in a passage of its own, keeps your statement on the record and says what it would cost to decide the other way.
+
+Everything that needs a decision from you is gathered into one numbered table at the top of the execution plan, each with a recommendation, and the closing message lists them, so you can answer with a number and a word. Lines of copy that depend on something not yet true carry a marker: `[Intended]` when they wait on the product or a decision, `[Live: Open]` when the capability is in the source and nothing confirmed it in the product customers use.
+
+The workspace is internal. It contains candid assessments of your product and research on named companies, so it should not be committed to a public repository; a private repository of its own is a good home for it.
 
 ## Scale
 
-This is a large job. A standard run on a repository with ten study areas and seven shortlisted competitors starts about fifty agents, most of them doing web research, and takes a correspondingly long time and a large number of tokens. The skill has three depths, and you can name one when you start:
+This is a large job. A standard run on a repository with ten study areas and seven shortlisted competitors plans about fifty units of work and starts about seventy agents, because the follow-up waves, the corrections after source checks and the occasional relaunch add roughly 40 per cent. A large product with a full shortlist passes a hundred. Most of the agents do web research, and the run takes most of a day and a large number of tokens; expect it to be interrupted by a usage limit at least once, which is what the ledger and the resume mode are for. The skill has three depths, and you can name one when you start:
 
 | Depth | Study areas | Competitors | Independent checks | Agents, roughly |
 |-------|-------------|-------------|--------------------|-----------------|
-| Quick | up to 5 | 3 to 4, one researcher each | the lead samples sources | 20 |
-| Standard (default) | 6 to 14 | 6 to 8, three researchers each | a source checker per competitor, each critic once | 45 to 60 |
-| Deep | as many as the repository needs | up to 12, three researchers each | checkers including the market, critics until clean | 80 or more |
+| Quick | up to 5 | 3 to 4, one researcher each | the lead samples sources | 20 to 25 |
+| Standard (default) | 6 to 14 | 6 to 8, three researchers each | a source checker per competitor, each critic once | 60 to 110 |
+| Deep | as many as the repository needs | up to 12, three researchers each | checkers including the market, critics until clean, a second strategy review | 130 or more |
 
 Depth changes how much is covered and how much is double-checked. It never relaxes the rules about sources.
 
 You can also set a budget as a maximum number of agents. The lead then reserves the synthesis and the checks first, spends what is left on study areas and competitors in priority order, and records whatever the budget excludes as deferred, so that a cheaper run is visibly a partial one and never a thinner one presented as complete. If the budget cannot fund a usable run, it says so before starting anything.
 
-Before the first team is launched, the lead says in a few lines what it understood the product and audiences to be, the depth, and how many agents it is about to start, so that a wrong premise can be caught while it is cheap.
+Before the first team is launched, the lead says in a few lines what it understood the product and audiences to be, the depth, and how many agents it is about to start, so that a wrong premise can be caught while it is cheap. Before the web research it probes each kind of source once and tells you which are closed from your host, since review sites and social networks often refuse automated readers and a search tool can be connected with no credit. If you can open one, the affected documents are a cheap rerun.
 
 The full run starts only when you ask for the research or its documents. A question ("who are the obvious competitors here?"), a review of one pitch, or advice on positioning is answered in the conversation, using the skill's method and any workspace that already exists, without starting teams or writing files. A request for part of the work runs only the stages it needs: competitor analysis alone stops after the landscape document, and a pitch or positioning request on an existing workspace rewrites only the relevant strategy documents.
 
@@ -164,6 +170,7 @@ Later runs work on the same workspace:
 ```text
 /market-research resume
 /market-research add Shelfwise as a competitor
+/market-research D2: yes, single shops first. D5: not this year
 /market-research the audience has changed: we are now selling to chains, not single shops
 /market-research refresh the competitor research
 /market-research quick run, four competitors at most
@@ -172,9 +179,9 @@ Later runs work on the same workspace:
 
 Changing an early stage marks every later stage that read its output as stale and redoes them, because a strategy built on a superseded product document is wrong in ways that are hard to notice. Adding a competitor researches that one alone and then rewrites the synthesis and strategy; dropping one sets its documents aside and does the same.
 
-A later run costs less than the first. Each study area records the commit it was written against, so a refresh re-studies only the areas whose source has changed. Competitors that were considered and cut stay cut unless the evidence has changed, and decisions you made in an earlier run are kept.
+A later run costs less than the first. Each study area records the commit it was written against, so a refresh re-studies only the areas whose source has changed. Competitors that were considered and cut stay cut unless the evidence has changed, and decisions you made in an earlier run are kept. An answer to one of the numbered decisions is recorded with its date; if it confirms what the documents recommend, only the passages that called it open change, and if it overturns it, the product brief and what follows are redone.
 
-A product without a repository works too: point the skill at a website, documentation or a deck, and those become the study areas. The skill is not limited to software sold to businesses. The intake records what kind of product it is (a developer tool, a business application, a consumer app, an open-source project, a physical product, a service), and each researcher adapts its sources and channels to that.
+A product spread over several repositories is studied as one product, with each repository's commit recorded. A product without a repository works too: point the skill at a website, documentation or a deck, and those become the study areas. The skill is not limited to software sold to businesses. The intake records what kind of product it is (a developer tool, a business application, a consumer app, an open-source project, a physical product, a service), and each researcher adapts its sources and channels to that.
 
 ## What it depends on, and its limits
 
@@ -182,7 +189,9 @@ The skill is a set of instructions, not a program. The agent researches with wha
 
 The quality of a run depends on the model doing the work and on the summary you give it. Competitor research goes stale within months, which is why the skill has a refresh mode. User feedback gathered from public posts is a sample with biases, and the skill reports themes in words and does not count them. None of this replaces talking to customers; the execution plan it writes will usually tell you to do so.
 
-Researchers only read public pages. They do not create accounts, start trials, submit forms or contact anyone, and they keep unreleased details of your product out of search queries.
+Researchers only read public pages, as anonymous visitors. They do not create accounts, start trials, submit forms or contact anyone, they do not read through a browser signed in as you, and they keep unreleased details of your product, and the names of prospects and customers found in internal notes, out of search queries and out of the documents.
+
+Nothing in a run observes your live product unless you arrange it. Where the product is hosted or sold through a store, statements about what customers get rest on what the repository records, and the documents say so.
 
 ## Development
 

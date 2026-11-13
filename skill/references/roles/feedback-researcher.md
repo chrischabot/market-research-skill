@@ -15,7 +15,7 @@ This is the role in which invention does the most damage, because a made-up comp
    - long-form accounts: blog posts and videos on adopting, migrating to, or leaving the product, and comparisons written by practitioners;
    - news and analyst coverage, especially of incidents, outages, pricing changes and security or safety problems.
    Useful searches pair the name with words such as "alternative", "switched from", "migrating", "problem", "pricing", "worth it", "review", "versus", and with the names of the other entries in `competitors.md`.
-3. Open the threads and read them; do not rely on titles or snippets. Collect short verbatim quotations with links and dates. If a site refuses to load, try another route to it; if none works, record it as unreachable and do not describe what it probably says.
+3. Open the threads and read them; do not rely on titles or snippets. Collect short verbatim quotations with links and dates. If a site refuses to load, try another route to it; if none works, record it as unreachable and do not describe what it probably says. Your brief lists the sources already known to be closed from this host. Do not retry those; look for the same people elsewhere: posts quoted in articles and newsletters, the product's own forum and issue tracker, comment threads under launch posts and videos. Read as an anonymous visitor, never through a browser signed in as the user. If a tool gives you a summary of a page in place of its text, take no quotation from it and say in "Where this comes from" that the source was read only in summary.
 4. Group what you find into themes. For each theme, give a sense of how common and how serious it is, in words ("raised repeatedly across independent sources", "one detailed account"). Do not count posts or compute percentages; your sample is not a survey.
 5. Note who is speaking where you can tell: hobbyist or professional, individual or organisation, new user or long-standing one. A complaint from our target audience matters more than a louder one from someone else's.
 6. Look for switching stories in both directions, since why people leave and what they leave for is the most direct evidence of unmet need.
@@ -61,6 +61,8 @@ users reacted.
 - Loved features to check our product against. Name each feature precisely;
   the landscape writer decides whether we have it.
 - Pain points that fall within what our product does or intends to do.
+- Pain points a user of our product would have just the same, as far as
+  product.md shows. These matter as much as the ones we solve.
 - Expectations this competitor has set that any rival will be measured against.
 
 ## Not found

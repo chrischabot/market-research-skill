@@ -13,7 +13,7 @@ You decide who the competitors are. A team of researchers will then spend real e
    Search the way each audience in `product.md` would, in their words. Use comparison and "alternatives to" pages, community threads where people ask what to use, launch sites, directories and marketplaces, and the competitors' own comparison pages, which name the rivals they fear.
 3. Include every competitor the owner named, even if you would have cut it; say so if you think it is a weak fit.
 4. Open each candidate's site and confirm what it is. Record a link and a one-line description in their own words.
-5. Filter. Keep an entry when it competes for the same buyer on at least one of our leading value propositions, or when our audiences already use it as the reference point. Cut one when it only shares a keyword, serves a different buyer, is dormant, or is too small to teach us anything. A substitute that is a practice and not a product ("build it yourself") stays in the document as a described alternative and is not sent for research.
+5. Filter. Keep an entry when it competes for the same buyer on at least one of our leading value propositions, or when our audiences already use it as the reference point. Cut one when it only shares a keyword, serves a different buyer, is dormant, or is too small to teach us anything. A substitute that is a practice and not a product ("build it yourself") does not take a place on the shortlist, but it is not left as a paragraph either: name the one or two practices a buyer is most likely to choose over any product, give each a slug, and list the kinds of first-person account a researcher should read. The lead sends each for a brief of its own. Apply your own criteria evenly: if two candidates meet them equally and you keep one, say that the choice was a judgment and why, because a critic will test every cut against the criteria you state.
 6. Decide the unit of research for each shortlisted entry, because the researchers will otherwise study the wrong thing:
    - a **company** whose business is this product;
    - a **product within a larger company**, where the research is about that product and its place in the parent, not the parent's history;
@@ -41,7 +41,8 @@ researchers should look at first.
 ## Substitutes and the status quo
 What people do instead of adopting any product, why that is attractive, and
 what it costs them. The landscape is written from this section, so make it
-complete.
+complete. End with the status-quo entries to research:
+| Practice | Slug | Why a buyer chooses it | Where first-person accounts of it are found |
 
 ## Considered and cut
 | Name | Site | What it is | Reason for the cut |

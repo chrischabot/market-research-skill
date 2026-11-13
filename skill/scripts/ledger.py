@@ -33,6 +33,8 @@ UNIT_STATUSES = {
 NEEDS_NOTE = {"thin", "blocked", "deferred", "stale", "dropped"}
 WRITTEN = {"done", "thin"}
 OPEN = {"planned", "in_progress", "stale"}
+# The run log; README.md is where earlier versions of the skill kept it.
+RUN_LOGS = ("RUN-LOG.md", "README.md")
 
 # Roles whose documents must be sourced from pages opened during the run.
 EVIDENCE_ROLES = {
@@ -188,6 +190,28 @@ def check(workspace):
                 "run is marked complete but these units are still open: "
                 + ", ".join(unfinished)
             )
+        if not any((workspace / name).is_file() for name in RUN_LOGS):
+            errors.append("run is marked complete but has no RUN-LOG.md")
+
+    # Strategy must not be built while a source check is still outstanding.
+    dict_units = [u for u in units if isinstance(u, dict)]
+    checks_open = [
+        u["id"]
+        for u in dict_units
+        if u.get("role") == "source-checker" and u.get("status") in ("planned", "in_progress")
+    ]
+    strategy_started = [
+        u["id"]
+        for u in dict_units
+        if u.get("stage") == 7 and u.get("status") in ("in_progress", "done", "thin")
+    ]
+    if checks_open and strategy_started:
+        warnings.append(
+            "stage 7 has started ("
+            + ", ".join(strategy_started)
+            + ") while these source checks are not finished: "
+            + ", ".join(checks_open)
+        )
 
     competitors = workspace / "competitors"
     if competitors.is_dir():

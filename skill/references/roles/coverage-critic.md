@@ -15,6 +15,8 @@ Look for:
 3. Areas whose document is too thin for their size or importance: template sections left empty, capabilities asserted with nothing behind them, no account of how the area is used.
 4. Capabilities, uses or audiences that the product's own documentation, examples or demos present and that are missing from the capability table and value propositions in `product.md`.
 5. Places where two component documents contradict each other and `product.md` did not resolve it.
+6. Material that is not code and that the strategy will need, with no area of its own: the existing positioning, website and marketing copy; the owner's recorded decisions, plans and pitch; and how the product is sold and run for customers (licence, what is public, pricing, hosting, what happens to data at an upgrade).
+7. Neighbouring projects in the same repository that were skipped without anyone reading what they are.
 
 ## Competitor critic (after stage 6)
 
@@ -27,7 +29,8 @@ Look for:
 3. A cut that the scout's own stated criteria do not support.
 4. Kinds of source that no feedback document reached for a competitor people evidently discuss (for example no review-site or store evidence at all).
 5. Documents too thin to support a comparison, and units a source checker marked unreliable that were not redone.
-6. Substitutes and the status quo: whether "build it yourself", "do nothing" and the incumbent habit are described well enough for the landscape to use.
+6. Substitutes and the status quo: whether "build it yourself", "do nothing" and the incumbent habit are described well enough for the landscape to use, and whether the practice buyers most often choose instead has a researched brief of its own.
+7. A neighbouring lane of several vendors that no shortlisted company represents, which could be researched as one entry.
 
 ## What to return
 

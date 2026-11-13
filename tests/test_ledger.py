@@ -127,6 +127,49 @@ class LedgerTest(unittest.TestCase):
         self.assertEqual(result.returncode, 1)
         self.assertIn("still open", result.stdout)
 
+    def test_complete_run_needs_a_run_log(self):
+        self.run_data["status"] = "complete"
+        self.run_data["units"][2]["status"] = "deferred"
+        self.run_data["units"][2]["note"] = "budget could not fund this competitor"
+        result = self.check()
+        self.assertEqual(result.returncode, 1)
+        self.assertIn("no RUN-LOG.md", result.stdout)
+        self.write("RUN-LOG.md", "# Run log\n")
+        self.assertEqual(self.check().returncode, 0)
+
+    def test_legacy_readme_counts_as_the_run_log(self):
+        self.run_data["status"] = "complete"
+        self.run_data["units"][2]["status"] = "deferred"
+        self.run_data["units"][2]["note"] = "budget could not fund this competitor"
+        self.write("README.md", "# Market research\n")
+        self.assertEqual(self.check().returncode, 0)
+
+    def test_strategy_during_an_open_source_check_warns(self):
+        self.run_data["units"].append(
+            {
+                "id": "check:shelfwise",
+                "stage": 6,
+                "role": "source-checker",
+                "outputs": ["competitors/checks/shelfwise.md"],
+                "status": "in_progress",
+            }
+        )
+        self.run_data["units"].append(
+            {
+                "id": "strategy:landscape",
+                "stage": 7,
+                "role": "strategy-writer",
+                "outputs": ["landscape.md"],
+                "status": "in_progress",
+            }
+        )
+        result = self.check()
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("source checks are not finished", result.stdout)
+        self.run_data["units"][3]["status"] = "planned"
+        self.run_data["units"][4]["status"] = "planned"
+        self.assertNotIn("source checks are not finished", self.check().stdout)
+
     def test_incomplete_run_needs_a_reason(self):
         self.run_data["status"] = "incomplete"
         self.assertEqual(self.check().returncode, 1)
